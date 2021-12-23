@@ -35,9 +35,14 @@ impl SignedFile {
     }
 
     pub fn deploy(&self) -> Result<(), ()> {
+        let current_dir = std::env::current_dir().or(Err(()))?;
+
         use std::io::Write;
 
         let path = std::path::Path::new(&self.filename);
+        let path = path.canonicalize().or(Err(()))?;
+        let path = path.strip_prefix(current_dir).or(Err(()))?;
+
         let mut f = std::fs::File::create(path).or(Err(()))?;
         f.write_all(&self.file).or(Err(()))?;
         Ok(())
