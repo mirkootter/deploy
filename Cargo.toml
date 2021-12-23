@@ -1,0 +1,16 @@
+[package]
+name = "deploy"
+version = "0.1.0"
+authors = ["Jan-Mirko Otter <janmirko.otter@googlemail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+base64 = "0.9.3"
+multipart = "0.17.1"
+hyper = "0.10"
+hyper-native-tls = "0.3.0"
+minisign = "0.6.2"
+structopt = { version = "0.3", default-features = false }
+openssl = { version = "0.10", features = ["vendored"] }

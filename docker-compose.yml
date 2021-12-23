@@ -1,0 +1,9 @@
+version: "3.8"  # optional since v1.27.0
+services:
+  deployserver:
+    build: .
+    command: serve
+    ports:
+      - "127.0.0.1:3333:3333"
+    volumes:
+      - /var/wp-leadform/www/release:/data
