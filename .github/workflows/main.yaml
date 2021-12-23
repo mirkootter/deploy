@@ -1,0 +1,21 @@
+name: CI
+
+on:
+    push:
+        branches: [main]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Build linux binary
+              run: |
+                docker build -t deploy .
+                docker cp `docker create deploy`:/usr/local/bin/deploy - > deploy
+
+            - uses: actions/upload-artifact@v2
+              with:
+                  path: deploy
