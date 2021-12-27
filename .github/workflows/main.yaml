@@ -15,6 +15,7 @@ jobs:
               run: |
                 docker build -t deploy .
                 docker cp `docker create deploy`:/usr/local/bin/deploy - > deploy
+                tar -xf deploy
 
             - uses: actions/upload-artifact@v2
               with:
